@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ingenious Mart - Navigate Online Shopping</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #e0f7fa, #f0ffff);
+      color: #004d4d;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    nav {
+      background: rgba(0, 128, 128, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    nav .logo {
+      color: #fff;
+      font-weight: 800;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      transition: transform 0.3s ease;
+    }
+
+    nav .logo:hover {
+      transform: scale(1.05);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      color: #e0f2f1;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #ffeb3b;
+      border-bottom-color: #ffeb3b;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(rgba(0, 128, 128, 0.6), rgba(0, 77, 77, 0.7)),
+        url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1470&q=80') no-repeat center/cover;
+      color: #fff;
+      text-align: center;
+      padding: 7rem 1rem 6rem;
+    }
+
+    .hero-section h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-section p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-inline: auto;
+      color: #dff;
+    }
+
+    .btn-primary {
+      background: #ff6f61;
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 5px 15px #ff6f61aa;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: #ff3d2e;
+      box-shadow: 0 8px 24px #ff3d2ecc;
+      transform: translateY(-3px);
+    }
+
+    /* Features Section */
+    .features-section {
+      padding: 5rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      backdrop-filter: blur(4px);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-card img {
+      width: 80px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.1));
+    }
+
+    .feature-card h3 {
+      color: #006666;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .feature-card p {
+      color: #333;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      background: #006666;
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 2.5rem;
+      }
+
+      .features-section {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+
+      .btn-primary {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Ingenious Mart</div>
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="categories.html">Categories</a></li>
+      <li><a href="cart.html">Cart</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero-section" data-aos="fade-down">
+    <h1>Shop Smart. Save More.</h1>
+    <p>Discover top deals from Amazon, Flipkart, Myntra & Ajio — in one place.</p>
+    <a href="categories.html" class="btn-primary">Explore Categories</a>
+  </header>
+
+  <section class="features-section" data-aos="fade-up">
+    <div class="feature-card">
+      <img src="https://img.icons8.com/ios-filled/100/008080/shopping-cart.png" alt="Wide Selection" />
+      <h3>Wide Selection</h3>
+      <p>Thousands of products across categories from trusted platforms.</p>
+    </div>
+    <div class="feature-card">
+      <img src="https://img.icons8.com/ios-filled/100/008080/discount.png" alt="Best Prices" />
+      <h3>Best Prices</h3>
+      <p>Compare prices instantly and get the best bang for your buck.</p>
+    </div>
+    <div class="feature-card">
+      <img src="https://img.icons8.com/ios-filled/100/008080/speed.png" alt="Fast & Easy" />
+      <h3>Fast & Easy</h3>
+      <p>Quick browsing, instant results, and smooth checkout experience.</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Ingenious Mart. All rights reserved.
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true, duration: 1000, easing: 'ease-in-out' });
+  </script>
+</body>
+</html>

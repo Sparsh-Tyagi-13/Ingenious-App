@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Electronics Appliances - Ingenious Mart</title>
+<style>
+  /* Reset and base */
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff0f5; /* light pink background */
+    color: #3a0f2a; /* deep pinkish text */
+  }
+  h1 {
+    background-color: #c9184a;
+    color: white;
+    padding: 20px 0;
+    margin: 0;
+    font-weight: 700;
+    text-align: center;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 8px rgba(201, 24, 74, 0.4);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  /* Back button */
+  #backButton {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(45deg, #c9184a, #ff4d6d);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(201, 24, 74, 0.5);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    width: max-content;
+  }
+  #backButton:hover {
+    background: linear-gradient(45deg, #ff4d6d, #c9184a);
+    box-shadow: 0 7px 20px rgba(255, 77, 109, 0.6);
+  }
+
+  /* Cart button - same style as back button */
+  .cart-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(45deg, #c9184a, #ff4d6d);
+    color: white;
+    padding: 14px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(201, 24, 74, 0.6);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
+    user-select: none;
+  }
+  .cart-btn:hover {
+    background: linear-gradient(45deg, #ff4d6d, #c9184a);
+    box-shadow: 0 8px 26px rgba(255, 77, 109, 0.7);
+  }
+
+  /* Grid container for product cards */
+  .grid-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+
+  /* Product Card Style - matching buttons with pill shape and shadows */
+  .product-card {
+    background: white;
+    border-radius: 50px;
+    padding: 20px 24px;
+    box-shadow: 0 10px 20px rgba(201, 24, 74, 0.12);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 16px 32px rgba(255, 77, 109, 0.3);
+  }
+
+  /* Product image */
+  .product-card img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    border-radius: 50%;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 12px rgba(201, 24, 74, 0.15);
+  }
+
+  /* Product name */
+  .product-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #8b0049;
+  }
+
+  /* Price & rating */
+  .price {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #c9184a;
+    margin-bottom: 6px;
+  }
+  .rating {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ff4d6d;
+    margin-bottom: 12px;
+  }
+
+  /* Suggested marketplace label */
+  .suggested {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #ff6f91;
+    margin-bottom: 14px;
+  }
+
+  /* Marketplace selector */
+  select.marketplace {
+    padding: 8px 12px;
+    border-radius: 50px;
+    border: 2px solid #ff4d6d;
+    background: #fff0f5;
+    font-weight: 600;
+    color: #8b0049;
+    outline: none;
+    margin-bottom: 16px;
+    cursor: pointer;
+    width: 80%;
+    transition: border-color 0.3s ease;
+  }
+  select.marketplace:hover, select.marketplace:focus {
+    border-color: #c9184a;
+  }
+
+  /* Add to Cart button */
+  button.add-cart {
+    padding: 12px 32px;
+    background: linear-gradient(45deg, #c9184a, #ff4d6d);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 7px 20px rgba(201, 24, 74, 0.5);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+  }
+  button.add-cart:hover {
+    background: linear-gradient(45deg, #ff4d6d, #c9184a);
+    box-shadow: 0 10px 30px rgba(255, 77, 109, 0.7);
+  }
+
+  /* Responsive font scaling */
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.8rem;
+      padding: 16px 0;
+    }
+    .product-card img {
+      width: 110px;
+      height: 110px;
+      margin-bottom: 12px;
+    }
+    .product-name {
+      font-size: 1rem;
+    }
+    .price {
+      font-size: 1rem;
+    }
+    button.add-cart, #backButton {
+      padding: 10px 24px;
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <h1>Electronics Appliances</h1>
+  <button id="backButton" onclick="window.location.href='categories.html'">⬅ Back to Categories</button>
+  <a href="cart.html" class="cart-btn" title="Go to Cart">🛒 Cart</a>
+
+  <div class="grid-container" id="productGrid"></div>
+  <div id="suggestion"></div>
+
+<script>
+const marketplaces = ['amazon', 'ajio', 'flipkart', 'myntra'];
+
+
+  const products = [
+    {
+      name: "TV",
+      img: "https://th.bing.com/th/id/OIP.rXT36XGHuoKqAlejJaTkKgHaHG?w=186&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+      prices: { amazon: 31499, ajio: 26900, flipkart: 25000, myntra: 30950 },
+      ratings: { amazon: 4, ajio: 4.0, flipkart: 4, myntra: 4.5 }
+    },
+    {
+      name: "Mixer Grinder",
+      img: "https://ts2.mm.bing.net/th?id=OIP.koJJv770XX1_7zKepW7QvwHaE8&pid=15.1",
+      prices: { amazon: 1299, ajio: 1280, flipkart: 1310, myntra: 1295 },
+      ratings: { amazon: 4.0, ajio: 3.9, flipkart: 3.95, myntra: 4.1 }
+    },
+    {
+      name: "AirPods",
+      img: "https://th.bing.com/th/id/OIP.R-yRkj48IzXDeRKz-wO9zwHaDt?w=337&h=175&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+      prices: { amazon: 1500, ajio: 1020, flipkart: 1980, myntra: 1005 },
+      ratings: { amazon: 4.4, ajio: 4.3, flipkart: 4.45, myntra: 4.35 }
+    },
+    {
+      name: "Headphone",
+      img: "https://th.bing.com/th/id/OIP.9dQ3Sb-Q0dLUCw-uZstS0wHaHa?w=220&h=220&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+      prices: { amazon: 3299, ajio: 4280, flipkart: 3310, myntra: 4295 },
+      ratings: { amazon: 4.0, ajio: 3.9, flipkart: 3.95, myntra: 4.1 }
+    },
+    {
+      name: "Phone",
+      img: "https://th.bing.com/th/id/OIP.FISisrF6BlCGli9-hAqMSAHaEK?w=262&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+      prices: { amazon: 99999, ajio: 99989, flipkart: 51000, myntra: 79000 },
+      ratings: { amazon: 4.0, ajio: 3.9, flipkart: 3.95, myntra: 4.1 }
+    },
+    {
+      name: "Waching Machine",
+      img: "https://th.bing.com/th/id/OIP.Nw34jZQlPfkwjLEs9pxyPAHaFj?w=244&h=184&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+      prices: { amazon: 3599, ajio: 46020, flipkart: 1080, myntra: 36005 },
+      ratings: { amazon: 4.4, ajio: 4.3, flipkart: 4.45, myntra: 4.35 }
+    },
+    {
+      name: "Light",
+      img: "https://th.bing.com/th/id/OIP.cOOh672i_mQJWfJpw2nGnwHaE7?w=285&h=190&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+      prices: { amazon: 999, ajio: 1020, flipkart: 980, myntra: 1050 },
+      ratings: { amazon: 4.4, ajio: 4.3, flipkart: 4.45, myntra: 4.35 }
+    },
+    {
+      name: "Oven",
+      img: "https://th.bing.com/th/id/OIP.Cy_Zz45-GddFmWzyP6ZQoQHaHa?w=193&h=192&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+      prices: { amazon: 9999, ajio: 10020, flipkart: 9800, myntra: 10050 },
+      ratings: { amazon: 4.4, ajio: 4.3, flipkart: 4.45, myntra: 4.35 }
+    },
+    {
+      name: "Fan",
+      img: "https://th.bing.com/th/id/OIP.yUFTSAF_X7I1Uf1tuAVKAgHaHa?w=194&h=194&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+      prices: { amazon: 999, ajio: 1020, flipkart: 980, myntra: 1005 },
+      ratings: { amazon: 4.4, ajio: 4.3, flipkart: 4.45, myntra: 4.35 }
+    },
+    {
+      name: "AC",
+      img: "https://th.bing.com/th/id/OIP.EHrM4DnfBprtOUo8fG8yVAHaJ4?w=130&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+      prices: { amazon: 34699, ajio: 36480, flipkart: 42910, myntra: 56295 },
+      ratings: { amazon: 4.0, ajio: 3.9, flipkart: 3.95, myntra: 4.1 }
+    },
+    {
+      name: "Speaker",
+      img: "https://th.bing.com/th/id/OIP.fjRVa9kvhjcgn46Rpt0aJwHaHG?w=202&h=193&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+      prices: { amazon: 5999, ajio: 11020, flipkart: 6980, myntra: 61005 },
+      ratings: { amazon: 4.4, ajio: 4.3, flipkart: 4.45, myntra: 4.35 }
+    },
+  ];
+// Get productGrid container element
+const grid = document.getElementById("productGrid");
+
+// Function to calculate best marketplace by rating/price ratio
+function getSuggestedMarketplace(product) {
+  let bestMarket = marketplaces[0];
+  let bestScore = product.ratings[bestMarket] / product.prices[bestMarket];
+  for (const market of marketplaces) {
+    const score = product.ratings[market] / product.prices[market];
+    if (score > bestScore) {
+      bestScore = score;
+      bestMarket = market;
+    }
+  }
+  return bestMarket;
+}
+
+// Create product cards dynamically
+products.forEach((product, index) => {
+  const suggestedMarket = getSuggestedMarketplace(product);
+  const defaultMarket = 'amazon';
+
+  const card = document.createElement("div");
+  card.className = "product-card";
+  card.innerHTML = `
+    <img src="${product.img}" alt="${product.name}" />
+    <div class="product-name">${product.name}</div>
+    <div class="price" id="price-${index}">₹${product.prices[defaultMarket]}</div>
+    <div class="rating" id="rating-${index}">⭐ ${product.ratings[defaultMarket]}</div>
+    <div class="suggested">Suggested: ${suggestedMarket.charAt(0).toUpperCase() + suggestedMarket.slice(1)}</div>
+    <select class="marketplace" id="marketplace-${index}">
+      ${marketplaces.map(m => `<option value="${m}">${m.charAt(0).toUpperCase() + m.slice(1)}</option>`).join('')}
+    </select>
+    <button class="add-cart" id="addCart-${index}">Add to Cart</button>
+  `;
+  grid.appendChild(card);
+
+  // Elements inside this card
+  const select = card.querySelector(`#marketplace-${index}`);
+  const priceDiv = card.querySelector(`#price-${index}`);
+  const ratingDiv = card.querySelector(`#rating-${index}`);
+
+  // Set default selected marketplace
+  select.value = defaultMarket;
+
+  // Update price and rating on marketplace change
+  select.addEventListener('change', () => {
+    const market = select.value;
+    priceDiv.textContent = `₹${product.prices[market]}`;
+    ratingDiv.textContent = `⭐ ${product.ratings[market]}`;
+  });
+
+  // Add to Cart button click handler (example alert)
+  const addCartBtn = card.querySelector(`#addCart-${index}`);
+  addCartBtn.addEventListener('click', () => {
+    alert(`Added ${product.name} from ${select.value.charAt(0).toUpperCase() + select.value.slice(1)} to cart.`);
+    // TODO: Implement real cart functionality here
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fashion Collection - Ingenious Mart</title>
+  <style>
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff0f5;
+      color: #3a0f2a;
+    }
+    h1 {
+      background-color: #c9184a;
+      color: white;
+      padding: 20px 0;
+      margin: 0;
+      font-weight: 700;
+      text-align: center;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+      box-shadow: 0 4px 8px rgba(201, 24, 74, 0.4);
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #c9184a;
+      margin-top: 40px;
+      font-size: 2rem;
+    }
+    a.back-btn {
+      display: inline-block;
+      margin: 20px auto;
+      padding: 12px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      background: linear-gradient(45deg, #007bff, #0056b3);
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 86, 179, 0.5);
+      text-decoration: none;
+      text-align: center;
+      width: max-content;
+    }
+    a.back-btn:hover {
+      background: linear-gradient(45deg, #0056b3, #003d7a);
+    }
+    .cart-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(45deg, #c9184a, #ff4d6d);
+      color: white;
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(201, 24, 74, 0.6);
+      z-index: 1000;
+      user-select: none;
+    }
+    .grid-container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .product-card {
+      background: white;
+      border-radius: 50px;
+      padding: 20px 24px;
+      box-shadow: 0 10px 20px rgba(201, 24, 74, 0.12);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .product-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 16px 32px rgba(255, 77, 109, 0.3);
+    }
+    .product-card img {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      border-radius: 50%;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 12px rgba(201, 24, 74, 0.15);
+    }
+    .product-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #8b0049;
+    }
+    .price {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #c9184a;
+      margin-bottom: 6px;
+    }
+    .rating {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #ff4d6d;
+      margin-bottom: 12px;
+    }
+    select.marketplace {
+      padding: 8px 12px;
+      border-radius: 50px;
+      border: 2px solid #ff4d6d;
+      background: #fff0f5;
+      font-weight: 600;
+      color: #8b0049;
+      outline: none;
+      margin-bottom: 16px;
+      cursor: pointer;
+      width: 80%;
+    }
+    button.add-cart {
+      padding: 12px 32px;
+      background: linear-gradient(45deg, #c9184a, #ff4d6d);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 7px 20px rgba(201, 24, 74, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Fashion Collection</h1>
+
+  <h2>Men</h2>
+  <div class="grid-container" id="menGrid"></div>
+
+  <h2>Women</h2>
+  <div class="grid-container" id="womenGrid"></div>
+
+  <a href="cart.html" class="cart-btn" title="Go to Cart">🛒 Cart</a>
+  <a href="categories.html" class="back-btn">← Back</a>
+
+  <script>
+    const marketplaces = ['amazon', 'ajio', 'flipkart', 'myntra'];
+
+    const products = [
+      {
+        name: "Men's Shirt",
+        category: "men",
+        img: "https://www.bing.com/th?id=OPAC.20PF4wad3OhIdw474C474&o=5&pid=21.1&w=148&h=228&rs=1&qlt=100&dpr=1.5&bw=6&bc=FFFFFF",
+        prices: { amazon: 679, ajio: 999, flipkart: 550, myntra: 925 },
+        ratings: { amazon: 4, ajio: 4.0, flipkart: 4, myntra: 4.5 }
+      },
+      {
+        name: "Jeans",
+        category: "men",
+        img: "https://www.bing.com/th?id=OPAC.EAEUERT2DAkQfg474C474&o=5&pid=21.1&w=160&h=239&rs=1&qlt=100&dpr=1.5&c=8&pcl=f5f5f5",
+        prices: { amazon: 1799, ajio: 1599, flipkart: 950, myntra: 925 },
+        ratings: { amazon: 4, ajio: 4.0, flipkart: 4, myntra: 4.5 }
+      },
+      {
+        name: "Skirt",
+        category: "women",
+        img: "https://th.bing.com/th/id/OIP.1wEju9Ey3HrWbOHjkGf_gAHaHa?w=194&h=194&c=7&r=0&o=5&dpr=1.5&pid=1.7",
+        prices: { amazon: 599, ajio: 699, flipkart: 450, myntra: 625 },
+        ratings: { amazon: 4, ajio: 4.0, flipkart: 4, myntra: 4.5 }
+      },
+      {
+        name: "Top",
+        category: "women",
+        img: "https://image.hm.com/assets/hm/23/aa/23aaa6586670a9542206a4b9f815580d37c8481e.jpg?imwidth=1260",
+        prices: { amazon: 399, ajio: 459, flipkart: 450, myntra: 455 },
+        ratings: { amazon: 4, ajio: 4.0, flipkart: 4, myntra: 4.5 }
+      },
+      {
+        name: "Saree",
+        category: "women",
+        img: "https://th.bing.com/th/id/OPAC.cEPOfnxXKmhz5g474C474?w=200&h=220&rs=1&o=5&dpr=1.5&pid=21.1",
+        prices: { amazon: 1799, ajio: 3899, flipkart: 2850, myntra: 1785 },
+        ratings: { amazon: 4, ajio: 4.0, flipkart: 4, myntra: 4.5 }
+      },
+      {
+        name: "Kurti",
+        category: "women",
+        img: "https://m.media-amazon.com/images/G/31/Symbol/2022/EOSS_MFA_BY_BRAND/Women/Kurtis/4._SS800_QL85_.jpg",
+        prices: { amazon: 499, ajio: 899, flipkart: 750, myntra: 325 },
+        ratings: { amazon: 4, ajio: 4.0, flipkart: 4, myntra: 4.5 }
+      },
+      {
+        name: "JumpSuit",
+        category: "women",
+        img: "https://www.bing.com/th?id=OPAC.LYCRSuJgNW8BgQ474C474&o=5&pid=21.1&w=160&h=228&rs=1&qlt=100&dpr=1&pcl=f5f5f5",
+        prices: { amazon: 1699, ajio: 2899, flipkart: 499, myntra: 2825 },
+        ratings: { amazon: 4, ajio: 4.0, flipkart: 4, myntra: 4.5 }
+      }
+    ];
+
+    function createProductCard(product) {
+      // Find marketplace with lowest price
+      let minMarketplace = marketplaces[0];
+      let minPrice = product.prices[minMarketplace];
+      marketplaces.forEach(mp => {
+        if(product.prices[mp] < minPrice){
+          minMarketplace = mp;
+          minPrice = product.prices[mp];
+        }
+      });
+
+      const rating = product.ratings[minMarketplace];
+
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <img src="${product.img}" alt="${product.name}" />
+        <div class="product-name">${product.name}</div>
+        <div class="price">₹${minPrice} <small>(${minMarketplace.charAt(0).toUpperCase() + minMarketplace.slice(1)})</small></div>
+        <div class="rating">⭐ ${rating} / 5</div>
+        <button class="add-cart" onclick="window.location.href='cart.html'">Add to Cart</button>
+      `;
+      return card;
+    }
+
+    products.forEach(product => {
+      const section = product.category === "men" ? "menGrid" : "womenGrid";
+      document.getElementById(section).appendChild(createProductCard(product));
+    });
+  </script>
+</body>
+</html>

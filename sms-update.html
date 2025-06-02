@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SMS Delivery Update - Ingenious Mart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      text-align: center;
+      padding: 40px;
+    }
+    form {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      display: inline-block;
+    }
+    input, textarea, button {
+      display: block;
+      width: 250px;
+      margin: 10px auto;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Send SMS Delivery Update</h1>
+  <form action="send-sms.php" method="POST">
+    <input type="text" name="phone" placeholder="Customer Phone (10 digits)" required pattern="\d{10}" />
+    <textarea name="message" placeholder="Enter delivery message" required></textarea>
+    <button type="submit">Send SMS</button>
+  </form>
+
+  <a href="delivery.html">← Go back to Delivery Page</a>
+</body>
+</html>
